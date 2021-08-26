@@ -14,5 +14,11 @@ routine:
 seq:
 	go run ./sequential.go $(NUMBER_OF_REQS)
 
+cur:
+	go run ./concurrent.go $(NUMBER_OF_REQS)
+
 time-seq: 
 	time $(MAKE) seq
+
+time-cur:
+	time $(MAKE) cur
