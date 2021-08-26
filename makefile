@@ -12,7 +12,7 @@ routine:
 	go run ./noDeadlock.go
 
 seq:
-	go run ./sequential.go
+	go run ./sequential.go $(NUMBER_OF_REQS)
 
 time-seq: 
 	time $(MAKE) seq
