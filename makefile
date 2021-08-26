@@ -1,4 +1,4 @@
-.PHONY: write read
+.PHONY: write read routine
 
 write:
 	go run ./deadlockWrite.go
@@ -6,3 +6,5 @@ write:
 read:
 	go run ./deadlockRead.go
 
+routine:
+	go run ./noDeadlock.go
