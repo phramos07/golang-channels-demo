@@ -5,16 +5,20 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
+	"strconv"
 )
 
 const (
-	MAX_POKEMON = 800
+	MAX_REQUESTS = 800
 )
 
 func main() {
+	numberOfRequests := readNumberOfRequestsFromCL()
+
 	url := "https://pokeapi.co/api/v2/pokemon/%d"
 
-	for i := 1; i < MAX_POKEMON; i++ {
+	for i := 1; i <= numberOfRequests; i++ {
 		pokeUrl := fmt.Sprintf(url, i)
 
 		res, err := http.Get(pokeUrl)
@@ -39,4 +43,18 @@ func main() {
 
 		fmt.Printf("Name: %s, Height: %f, Weight: %f\n", pokemon["name"], pokemon["height"], pokemon["weight"])
 	}
+}
+
+func readNumberOfRequestsFromCL() int {
+	args := os.Args[1:]
+	numberOfRequests := MAX_REQUESTS
+	if len(args) >= 1 {
+		var err error
+		numberOfRequests, err = strconv.Atoi(args[0])
+		if err != nil {
+			numberOfRequests = MAX_REQUESTS
+		}
+	}
+
+	return numberOfRequests
 }
