@@ -11,15 +11,14 @@ import (
 
 const (
 	MAX_REQUESTS = 800
+	URL          = "https://pokeapi.co/api/v2/pokemon/%d"
 )
 
 func main() {
 	numberOfRequests := readNumberOfRequestsFromCL()
 
-	url := "https://pokeapi.co/api/v2/pokemon/%d"
-
 	for i := 1; i <= numberOfRequests; i++ {
-		pokeUrl := fmt.Sprintf(url, i)
+		pokeUrl := fmt.Sprintf(URL, i)
 
 		res, err := http.Get(pokeUrl)
 		if err != nil {
