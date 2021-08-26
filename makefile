@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 .PHONY: write read routine
 
 write:
@@ -8,3 +10,9 @@ read:
 
 routine:
 	go run ./noDeadlock.go
+
+seq:
+	go run ./sequential.go
+
+time-seq: 
+	time $(MAKE) seq
